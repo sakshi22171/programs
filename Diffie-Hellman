@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int p,q,person1,person2,key1,key2;
+    cout<<"Enter prime number(p):";
+    cin>>p;
+    cout<<"Enter prime number(q):";
+    cin>>q;
+    cout<<"Enter assumed value for person 1:";
+    cin>>person1;
+    cout<<"Enter assumed value for person 2:";
+    cin>>person2;
+    
+    
+   int temp1=(pow(q,person1));
+   key1=temp1%p;
+   
+   int temp2=(pow(q,person2));
+   key2=temp2%p;
+   
+    int person1_key,person2_key;
+   
+    
+    int temp3=pow(key2,person1);
+    person1_key=temp3%p;
+    
+    int temp4=pow(key1,person2);
+    person2_key=temp4%p;
+    
+    
+    cout<<person1_key<<endl<<person2_key;
+    return 0;
+}
