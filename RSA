@@ -1,0 +1,70 @@
+// RSA algorithm
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int gcd(int a,int b){
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+int main()
+{
+    long p,q;
+    cout<<"Enter two Large numbers"<<endl;
+    cout<<"Enter prime number (p): ";
+    cin>>p;
+    cout<<"Enter prime number (q): ";
+    cin>>q;
+    
+    //calculate n=p*q
+    long n=p*q;
+    cout<<"Value of n: "<<n<<endl;
+    
+    
+    // calculater Euler_totient_function
+    long Euler_totient_function=(p-1)*(q-1);
+    
+    
+    // Calulate e
+    long e,temp;
+    for(int i=2;i<Euler_totient_function;i++){
+        temp=gcd(i,Euler_totient_function);
+        if(temp==1){
+            e=i;
+            break;
+        }
+    }
+    cout<<"Value of e: "<<e<<endl;
+    
+    
+    //Calculate d
+    long d;
+    for(int i=1;i<Euler_totient_function;i++){
+        if((e*i)%Euler_totient_function==1){
+            d=i;
+            break;
+        }
+    }
+    cout<<"Value of d:"<<d<<endl;
+    
+    cout<<"Public key: {"<<e<<","<<n<<"}"<<endl;
+    cout<<"Private key: {"<<d<<","<<n<<"}"<<endl;
+    
+    
+    cout<<"Encryption(M=31)"<<endl;
+    //(M<n) is plain text characters
+    long M=31;
+    //C: Cypher text
+    long temp1=pow(M,e);
+    long C=temp1%n;
+    cout<<"C:"<<C<<endl;
+    
+    
+    //Decryption
+    cout<<"Decryption"<<endl;
+     long temp2=pow(C,d);
+     M=temp2%n;
+     cout<<"M:"<<M;
+    
+    return 0;
+}
